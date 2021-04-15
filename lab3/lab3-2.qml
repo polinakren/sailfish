@@ -32,10 +32,6 @@ ApplicationWindow
         y:700
         Switch{
             id:mute
-            Text {
-                id: name
-                text: qsTr("text")
-            }
         }
         Label{
             text: mute.checked?"Включен":"Выключен"
@@ -43,6 +39,8 @@ ApplicationWindow
     }
 
     Slider{
+        enabled: mute.checked?true:false
+
         width: parent.width
         y: 900
         label: "Текущее значение: " + count

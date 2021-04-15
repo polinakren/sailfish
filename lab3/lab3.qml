@@ -8,9 +8,11 @@ ApplicationWindow
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
     property int count: 0;
+    property int temp: 0;
     property string textFor: "Отпущена"
     property string dayfor: ""
     property date currentDate: new Date()
+
 
 
     Label{
@@ -20,7 +22,11 @@ ApplicationWindow
     TextField{
         y:50
         width: parent.width
-        inputMethodHints: Qt.ImhFormattedNumbersOnly
+        inputMethodHints: {
+            if(text == '.' && temp == 1){
+                text = 0;
+            }
+            Qt.ImhFormattedNumbersOnly}
         label: "your number"
         placeholderText: label
     }
