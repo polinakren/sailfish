@@ -30,4 +30,11 @@ Page {
             text: "Добавить"
             onClicked: dataModel.append({ text: "Элемент " })
         }
+
+        Button{
+            anchors.horizontalCenter: parent.horizontalCenter
+            y:1000
+            text: "Добавить страницу"
+            onClicked: pageStack.pushAttached(Qt.resolvedUrl("Page3.qml"))
+        }
 }

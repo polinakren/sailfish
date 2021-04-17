@@ -2,24 +2,25 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
-    property var dataModel: [
-        { color: "white", text: "Белый" },
-        { color: "black", text: "Черный" },
-        { color: "blue", text: "Синий" }
-    ]
+    ListModel {
+        id: dataModel
+        ListElement { color: "white"; text: "Белый" }
+        ListElement { color: "black"; text: "Черный" }
+        ListElement { color: "blue"; text: "Синий" }
+    }
     SilicaListView {
         anchors.fill: parent
         header: PageHeader { title: "Список" }
         model: dataModel
-        spacing: 10
         delegate: Rectangle {
             width: parent.width
             height: 100
-            color: modelData.color
+            color: model.color
             Text {
                 anchors.centerIn: parent
-                text: modelData.text
-                font.pointSize: 30
+                text: model.text
+                font.bold: true
+                font.pointSize:  35
                 color:{
                     if(index == 0)
                         color = "black"
@@ -33,10 +34,9 @@ Page {
     }
 
     Button{
-        y:800
-        x: Theme.horizontalPageMargin
-        text: "Добавить страницу"
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: pageStack.pushAttached(Qt.resolvedUrl("SecondPage.qml"))
+        y:800
+        text: "Добавить страницу"
+        onClicked: pageStack.pushAttached(Qt.resolvedUrl("Page2.qml"))
     }
 }
