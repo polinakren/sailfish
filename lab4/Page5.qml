@@ -49,9 +49,8 @@ Page {
     }
 
     Button{
-        x: Theme.horizontalPageMargin
+        anchors.horizontalCenter: parent.horizontalCenter
         text: "Добавить страницу"
-        onClicked: pageStack.pushAttached(Qt.resolvedUrl("SecondPage.qml"))
-
+        onClicked: pageStack.pushAttached(Qt.resolvedUrl("Page6.qml"))
     }
 }

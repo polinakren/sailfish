@@ -20,4 +20,10 @@ Page {
     label: webView.title
     EnterKey.onClicked: webView.url = text
     }
+
+    Button{
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Добавить страницу"
+        onClicked: pageStack.pushAttached(Qt.resolvedUrl("Page5.qml"))
+    }
 }

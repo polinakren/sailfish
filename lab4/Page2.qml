@@ -14,30 +14,28 @@ Page {
             title: "Вторая страница"
         }
         Button{
+            anchors.horizontalCenter: parent.horizontalCenter
             x: Theme.horizontalPageMargin
             text: "Назад"
-            onClicked: pageStack.popAttached(Qt.resolvedUrl("SecondPage.qml"))
+            onClicked: pageStack.navigateBack()
         }
 
         Button{
+            anchors.horizontalCenter: parent.horizontalCenter
             id: button1
             x: Theme.horizontalPageMargin
             text: "Написать"
-            onClicked: {
-                var dialog = pageStack.push(Qt.resolvedUrl("lab4.qml"));
-                dialog.accepted.connect(function(){
-                   console.log(dialog.text);
-                   textFieldText.text = dialog.firstTextFieldValue
-                   });
+            onClicked: pageStack.push(dialog)
             }
-        }
-        TextField{
-            id: textFieldText
-            text: ""
+
+        Label{
+            anchors.horizontalCenter: parent.horizontalCenter
+            id: label
         }
 
         Button{
             id: button2
+            anchors.horizontalCenter: parent.horizontalCenter
             x: Theme.horizontalPageMargin
             text: "Выбрать дату"
             onClicked: {
@@ -49,13 +47,14 @@ Page {
                });
             }
         }
-        TextField{
+        Label{
             id: textFieldData
-            text: ""
+            anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Button{
             id: button3
+            anchors.horizontalCenter: parent.horizontalCenter
             x: Theme.horizontalPageMargin
             text: "Выбрать время"
             onClicked: {
@@ -66,9 +65,32 @@ Page {
                });
             }
         }
-        TextField{
+        Label{
             id: textFieldTime
-            text: ""
+            anchors.horizontalCenter: parent.horizontalCenter
         }
+        Button{
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Добавить страницу"
+            onClicked: pageStack.pushAttached(Qt.resolvedUrl("Page3.qml"))
+        }
+    }
+    Dialog {
+           id: dialog
+           Column {
+               width:parent.width
+               spacing: 30
+               DialogHeader {
+                   title: "Введите текст"
+               }
+               TextField {
+                   placeholderText: "Введите текст"
+                   id: textField
+                   width: parent.width
+                   anchors.horizontalCenter: parent.horizontalCenter
+
+               }
+           }
+           onAccepted: label.text = textField.text
     }
 }
