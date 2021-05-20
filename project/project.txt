@@ -1,0 +1,53 @@
+# import Kivy
+#import kivy
+
+import requests
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+# my app
+#http://api.openweathermap.org/data/2.5/weather?q=mosc..
+class MyApp(App):
+# layout
+final=""
+def build(self):
+layout = BoxLayout(padding=10, orientation='vertical')
+btn1 = Button(text="Moscow")
+btn1.bind(on_press=self.Mos)
+layout.add_widget(btn1)
+btn1 = Button(text="Kaliningrad")
+btn1.bind(on_press=self.Kal)
+layout.add_widget(btn1)
+btn1 = Button(text="Nizhny Novgorod")
+btn1.bind(on_press=self.Niz)
+layout.add_widget(btn1)
+self.name_label = Label(text="Game")
+
+layout.add_widget(self.name_label)
+
+return layout
+
+# button click function
+def Mos(self, btn):
+pass
+m=requests.get("http://api.openweathermap.org/data/2.5/weather?q=moscow&..")
+z="Resume: {}\nDescription: {}\nWind-speed :{}".format(m.json().get("weather")[0].get('main'),m.json().get("weather")[0].get('description'),m.json().get("wind").get('speed'))
+self.name_label.text=z
+
+def Kal(self, btn):
+pass
+m=requests.get("http://api.openweathermap.org/data/2.5/weather?q=Kaliningrad..")
+z="Resume: {}\nDescription: {}\nWind-speed :{}".format(m.json().get("weather")[0].get('main'),m.json().get("weather")[0].get('description'),m.json().get("wind").get('speed'))
+self.name_label.text=z
+
+def Niz(self, btn):
+pass
+m=requests.get("http://api.openweathermap.org/data/2.5/weather?id=520555..")
+z="Resume: {}\nDescription: {}\nWind-speed :{}".format(m.json().get("weather")[0].get('main'),m.json().get("weather")[0].get('description'),m.json().get("wind").get('speed'))
+self.name_label.text=z
+
+
+# run app
+if __name__ == "__main__":
+MyApp().run()
